@@ -1,0 +1,19 @@
+# MLflow tracking store (auto-generated, large)
+mlruns/
+
+# Cumulative outputs (auto-generated at runtime)
+all_predictions.csv
+processed_files.txt
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+
+# OS files
+.DS_Store
+Thumbs.db
