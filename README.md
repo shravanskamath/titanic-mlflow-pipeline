@@ -120,6 +120,17 @@ Each run logs:
 | Artifact | Snapshot of `all_predictions.csv` at that point in time |
 | Artifact | The trained model (loadable with `mlflow.sklearn.load_model`) |
 
+1.if __name__ == "__main__":
+— This condition is only True when you run the file directly (python train.py ...). If another script imports train.py (like run_pipeline.py likely does), this block is skipped entirely, so importing won't accidentally trigger training.
+2.if len(sys.argv) < 2:
+— Checks that you passed a CSV filename as an argument. sys.argv is the list of command-line arguments, where sys.argv[0] is always the script name itself. If no CSV path is given, it prints usage instructions and exits.
+3.new_csv = sys.argv[1]
+— Grabs the first argument you passed, e.g. part1.csv.
+4.if not os.path.exists(new_csv):
+— Validates that the file actually exists on disk before doing anything. Exits with a clear error message if not.
+5.train(new_csv)
+— Calls the main train() function defined above, which runs the full ML pipeline: data prep → model training → evaluation → MLflow logging.
+
 ---
 
 ## Current Results
